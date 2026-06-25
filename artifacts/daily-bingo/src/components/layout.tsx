@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import { useAuth } from "@/lib/auth";
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
-import { LogOut, LayoutDashboard, Users, Grid, BookOpen, Flame } from "lucide-react";
+import { LogOut, LayoutDashboard, Users, Grid3X3, BookOpen, Flame } from "lucide-react";
 
 export function AdminLayout({ children }: { children: ReactNode }) {
   const { user, logout } = useAuth();
@@ -13,6 +13,7 @@ export function AdminLayout({ children }: { children: ReactNode }) {
   const navItems = [
     { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
     { href: "/admin/participants", label: "Participants", icon: Users },
+    { href: "/admin/bingo-cards", label: "Bingo Cards", icon: Grid3X3 },
     { href: "/admin/reflections", label: "Reflections", icon: BookOpen },
   ];
 

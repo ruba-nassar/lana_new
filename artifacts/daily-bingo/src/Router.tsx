@@ -12,6 +12,7 @@ import AdminParticipantDetail from "@/pages/admin/participant-detail";
 import AdminCardNew from "@/pages/admin/card-new";
 import AdminCardEdit from "@/pages/admin/card-edit";
 import AdminReflections from "@/pages/admin/reflections";
+import AdminBingoCards from "@/pages/admin/bingo-cards";
 import { Spinner } from "@/components/ui/spinner";
 
 function ProtectedRoute({ component: Component, roleRequired, ...rest }: any) {
@@ -58,6 +59,9 @@ export default function AppRouter() {
       </Route>
       <Route path="/admin/cards/:id">
         {(params) => <ProtectedRoute component={AdminCardEdit} roleRequired="admin" id={params.id} />}
+      </Route>
+      <Route path="/admin/bingo-cards">
+        {() => <ProtectedRoute component={AdminBingoCards} roleRequired="admin" />}
       </Route>
       <Route path="/admin/reflections">
         {() => <ProtectedRoute component={AdminReflections} roleRequired="admin" />}
