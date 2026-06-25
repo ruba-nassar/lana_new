@@ -49,11 +49,20 @@ export interface Participant {
   createdAt: string;
 }
 
+export type ParticipantInputRole = typeof ParticipantInputRole[keyof typeof ParticipantInputRole];
+
+
+export const ParticipantInputRole = {
+  admin: 'admin',
+  participant: 'participant',
+} as const;
+
 export interface ParticipantInput {
   name: string;
   username: string;
   password: string;
   email?: string;
+  role?: ParticipantInputRole;
 }
 
 export interface ParticipantUpdate {

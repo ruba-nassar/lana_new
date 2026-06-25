@@ -52,7 +52,7 @@ export const GetMeResponse = zod.object({
 
 
 /**
- * @summary List all participants (admin only)
+ * @summary List all users (admin only)
  */
 export const ListParticipantsResponseItem = zod.object({
   "id": zod.number(),
@@ -66,13 +66,14 @@ export const ListParticipantsResponse = zod.array(ListParticipantsResponseItem)
 
 
 /**
- * @summary Create a participant (admin only)
+ * @summary Create a user (admin only)
  */
 export const CreateParticipantBody = zod.object({
   "name": zod.string(),
   "username": zod.string(),
   "password": zod.string(),
-  "email": zod.string().optional()
+  "email": zod.string().optional(),
+  "role": zod.enum(['admin', 'participant']).optional()
 })
 
 export const CreateParticipantResponse = zod.object({

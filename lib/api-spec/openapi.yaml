@@ -90,7 +90,7 @@ paths:
     get:
       operationId: listParticipants
       tags: [participants]
-      summary: List all participants (admin only)
+      summary: List all users (admin only)
       responses:
         "200":
           description: List of participants
@@ -104,7 +104,7 @@ paths:
     post:
       operationId: createParticipant
       tags: [participants]
-      summary: Create a participant (admin only)
+      summary: Create a user (admin only)
       requestBody:
         required: true
         content:
@@ -536,6 +536,9 @@ components:
           type: string
         email:
           type: string
+        role:
+          type: string
+          enum: [admin, participant]
 
     ParticipantUpdate:
       type: object

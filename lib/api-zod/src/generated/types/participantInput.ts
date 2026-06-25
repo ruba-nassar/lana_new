@@ -5,10 +5,12 @@
  * Daily Challenge Bingo API
  * OpenAPI spec version: 0.1.0
  */
+import type { ParticipantInputRole } from './participantInputRole';
 
 export interface ParticipantInput {
   name: string;
   username: string;
   password: string;
   email?: string;
+  role?: ParticipantInputRole;
 }

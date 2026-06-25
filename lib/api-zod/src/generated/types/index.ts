@@ -22,6 +22,7 @@ export * from './healthStatus';
 export * from './loginInput';
 export * from './participant';
 export * from './participantInput';
+export * from './participantInputRole';
 export * from './participantProgress';
 export * from './participantRole';
 export * from './participantUpdate';

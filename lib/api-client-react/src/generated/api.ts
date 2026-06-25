@@ -369,7 +369,7 @@ export const getListParticipantsUrl = () => {
 }
 
 /**
- * @summary List all participants (admin only)
+ * @summary List all users (admin only)
  */
 export const listParticipants = async ( options?: RequestInit): Promise<Participant[]> => {
 
@@ -416,7 +416,7 @@ export type ListParticipantsQueryError = ErrorType<unknown>
 
 
 /**
- * @summary List all participants (admin only)
+ * @summary List all users (admin only)
  */
 
 export function useListParticipants<TData = Awaited<ReturnType<typeof listParticipants>>, TError = ErrorType<unknown>>(
@@ -446,7 +446,7 @@ export const getCreateParticipantUrl = () => {
 }
 
 /**
- * @summary Create a participant (admin only)
+ * @summary Create a user (admin only)
  */
 export const createParticipant = async (participantInput: ParticipantInput, options?: RequestInit): Promise<Participant> => {
 
@@ -494,7 +494,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
     export type CreateParticipantMutationError = ErrorType<unknown>
 
     /**
- * @summary Create a participant (admin only)
+ * @summary Create a user (admin only)
  */
 export const useCreateParticipant = <TError = ErrorType<unknown>,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createParticipant>>, TError,{data: BodyType<ParticipantInput>}, TContext>, request?: SecondParameter<typeof customFetch>}

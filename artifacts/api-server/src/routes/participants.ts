@@ -36,7 +36,6 @@ router.get("/participants", async (req, res): Promise<void> => {
   const participants = await db
     .select()
     .from(usersTable)
-    .where(eq(usersTable.role, "participant"))
     .orderBy(usersTable.createdAt);
 
   res.json(
@@ -70,7 +69,7 @@ router.post("/participants", async (req, res): Promise<void> => {
       username: parsed.data.username,
       passwordHash,
       email: parsed.data.email ?? null,
-      role: "participant",
+      role: (parsed.data.role as "admin" | "participant") ?? "participant",
     })
     .returning();
 
