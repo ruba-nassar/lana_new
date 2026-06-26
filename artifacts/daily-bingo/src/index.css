@@ -190,3 +190,145 @@
     @apply font-serif;
   }
 }
+/* ===========================
+   PASSPORT DESIGN
+=========================== */
+
+.passport-cover {
+  width: 300px;
+  height: 420px;
+
+  background: linear-gradient(180deg, #3f2a67 0%, #2d1d4d 100%);
+
+  border-radius: 18px;
+
+  border: 2px solid #c9a04b;
+
+  position: relative;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 20px 40px rgba(0,0,0,.25),
+    inset 0 0 0 2px rgba(255,255,255,.05);
+
+  transition: .35s;
+}
+
+.passport-cover:hover{
+  transform:translateY(-4px);
+  box-shadow:
+    0 28px 60px rgba(0,0,0,.35);
+}
+
+/* Leather texture */
+
+.passport-cover::before{
+
+  content:"";
+
+  position:absolute;
+
+  inset:0;
+
+  opacity:.12;
+
+  background-image:
+  radial-gradient(circle, rgba(255,255,255,.25) 1px, transparent 1px);
+
+  background-size:12px 12px;
+}
+
+/* Gold frame */
+
+.passport-cover::after{
+
+  content:"";
+
+  position:absolute;
+
+  top:14px;
+  left:14px;
+  right:14px;
+  bottom:14px;
+
+  border:2px solid #d6b15a;
+
+  border-radius:12px;
+}
+
+.passport-inner{
+
+  position:relative;
+
+  z-index:2;
+
+  height:100%;
+
+  display:flex;
+
+  flex-direction:column;
+
+  justify-content:center;
+
+  align-items:center;
+
+  text-align:center;
+
+  padding:35px;
+}
+
+.passport-inner h2{
+
+  color:#e0bf72;
+
+  font-size:34px;
+
+  margin-bottom:14px;
+
+  font-family:serif;
+}
+
+.passport-inner p{
+
+  color:#ead9ab;
+
+  font-size:17px;
+
+  margin-bottom:35px;
+}
+
+.passport-cross{
+
+  color:#e0bf72;
+
+  font-size:55px;
+
+  margin-bottom:40px;
+}
+
+.passport-inner button{
+
+  background:#d9b15b;
+
+  color:#2f214d;
+
+  border:none;
+
+  padding:12px 28px;
+
+  border-radius:12px;
+
+  font-weight:bold;
+
+  cursor:pointer;
+
+  transition:.3s;
+}
+
+.passport-inner button:hover{
+
+  transform:scale(1.05);
+
+  background:#e7c97a;
+}
