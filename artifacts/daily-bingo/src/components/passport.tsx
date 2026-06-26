@@ -57,15 +57,10 @@ export default function Passport() {
 
               <p>الجولة 1 ____________ الجولة 2 ____________</p>
 
-              <textarea
-                className="passport-textarea"
-                placeholder="..."
-              />
+              <textarea className="passport-textarea" placeholder="..." />
 
               <div className="mt-6">
-                <h3 className="text-xl font-bold mb-2 text-center">
-                  الاقتلاع
-                </h3>
+                <h3 className="text-xl font-bold mb-2 text-center">الاقتلاع</h3>
 
                 <textarea
                   className="passport-textarea"
@@ -73,6 +68,7 @@ export default function Passport() {
                   rows={5}
                 />
               </div>
+            </div>
 
             {/* الصفحة الثانية */}
             <div className="passport-page">
@@ -80,15 +76,10 @@ export default function Passport() {
 
               <p>الجولة 1 ____________ الجولة 2 ____________</p>
 
-              <textarea
-                className="passport-textarea"
-                placeholder="..."
-              />
+              <textarea className="passport-textarea" placeholder="..." />
 
               <div className="mt-6">
-                <h3 className="text-xl font-bold mb-2 text-center">
-                  الاقتلاع
-                </h3>
+                <h3 className="text-xl font-bold mb-2 text-center">الاقتلاع</h3>
 
                 <textarea
                   className="passport-textarea"
