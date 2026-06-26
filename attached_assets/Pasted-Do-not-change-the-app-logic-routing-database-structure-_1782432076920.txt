@@ -1,0 +1,194 @@
+Do not change the app logic, routing, database structure, authentication, role handling, or the “one unlocked challenge per day” behavior.
+
+I only want a safe UI/UX polish and cleanup for the existing Daily Bingo app so it looks more polished, warm, modern, and consistent on both mobile and desktop without breaking the current working flow.
+
+Important:
+
+Before making changes, create a safe backup/snapshot of the current working version so we can roll back if needed.
+
+---
+
+Keep these behaviors exactly as they are
+
+- Admin login and participant login
+- Existing admin/participant roles
+- Existing bingo card assignment logic
+- Existing one-box-per-day unlock logic
+- Existing reflection saving flow
+- Existing published app behavior
+
+Do not rebuild the app, do not redesign the architecture, and do not change the database unless absolutely required for a purely cosmetic reason.
+
+---
+
+I only want these specific improvements
+
+1) Global visual UI refresh
+
+Improve the overall look and feel of the app while keeping it lightweight and mobile-friendly.
+
+Design direction:
+
+- calm
+- elegant
+- warm
+- youth-friendly but still mature
+- clean and slightly playful, not childish
+- spiritual/uplifting feeling
+- soft rounded cards
+- subtle shadows
+- clear spacing and breathing room
+- better typography hierarchy
+- polished buttons and section layout
+
+Apply this across:
+
+- participant dashboard
+- admin dashboard
+- users page
+- bingo cards page
+- reflections page
+
+---
+
+2) Category color system
+
+Use a consistent category color system throughout the app:
+
+- Spirit = purple
+- Mind = blue
+- Body = green
+- Health = orange
+- People = pink
+
+Use these colors tastefully for:
+
+- challenge category badges
+- bingo tile accents / top border strip
+- active/selected states
+- category chips in the admin bingo editor
+
+Do not make it look childish or too loud.
+
+---
+
+3) Participant dashboard cleanup and styling
+
+Do not change the participant logic.
+
+Only improve the participant dashboard visually and clean up the experience.
+
+Participant dashboard should look like this:
+
+A) Better top section / hero section
+
+- cleaner heading hierarchy
+- make it feel like a proper “Today’s Challenge” area
+- show progress like Day X of 9 if that already exists or can be shown safely without changing logic
+
+B) Better bingo board styling
+
+Keep the current 3x3 bingo board and one-box-per-day behavior exactly as it is, but visually distinguish:
+
+- locked future boxes → muted style, lock icon if appropriate
+- today’s active box → clearly highlighted with stronger border/shadow/accent
+- completed boxes → clear completed/check styling
+
+Make the bingo board feel like a polished bingo challenge board, not a rough prototype.
+
+C) Reflection section styling
+
+Keep the reflection form below the board, but style it as a nicer clean card section.
+
+---
+
+4) Reflection form cleanup
+
+This is important.
+
+Because the participant only gets one unlocked challenge per day, I do not want the reflection form to ask the participant to manually type or choose which challenge they picked.
+
+Please change the reflection form UI like this:
+
+- Remove the free-text field: “Which challenge did you choose?”
+- Automatically associate the reflection with the currently unlocked daily challenge
+- Show the title/text of today’s unlocked challenge clearly above the reflection form
+- Keep only the meaningful reflection questions, such as:
+  - What exactly did you do today?
+  - What impact did it have on you?
+
+You may improve the wording slightly if needed, but keep the reflection simple and meaningful.
+
+Do not break the reflection saving logic.
+
+---
+
+5) Admin panel styling only
+
+Do not change admin functionality.
+
+Only improve the visual layout and polish of:
+
+- admin dashboard stat cards
+- users page / users table or cards
+- bingo cards editor page
+- reflections list page
+
+Make the admin side feel visually consistent with the participant side.
+
+---
+
+6) Bingo card editor styling
+
+Keep the current admin bingo card editor functionality exactly as it is.
+
+Only improve the visual layout of the 3x3 editor:
+
+- make each square look more like a real bingo tile
+- improve spacing and alignment
+- show category chips more cleanly
+- make the editor easier to use on mobile
+- keep it visually consistent with the participant bingo board
+
+---
+
+7) Remove clutter / unfinished prototype feel
+
+Please clean up any leftover UI clutter if it still exists, such as:
+
+- placeholder/demo-looking text in the UI
+- awkward duplicate headings
+- confusing repeated sections
+- rough unfinished spacing
+- any participant-facing wording that feels like debug/prototype UI
+
+Do not remove real user data or actual saved bingo content.
+This cleanup is only about the interface and visible presentation.
+
+---
+
+8) Keep everything safe
+
+Do not:
+
+- break login
+- break user creation
+- break admin creation / role handling
+- break participant dashboards
+- break bingo card assignment
+- break daily unlock logic
+- break reflection saving
+- replace the current app with a new structure
+- convert the app into a free-pick bingo board
+
+This should be a safe UI/UX cleanup and visual polish only, with the one reflection form cleanup mentioned above.
+
+---
+
+9) After finishing
+
+Please give me a short summary of:
+
+1. what visual changes were made
+2. which files were edited
+3. whether anything still needs manual testing
