@@ -2,7 +2,14 @@ import { useAuth } from "@/lib/auth";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Redirect } from "wouter";
@@ -27,19 +34,14 @@ export default function Login() {
     <div className="min-h-screen flex bg-background relative overflow-hidden">
       {/* Left: blended nature image panel (desktop only) */}
       <div className="hidden md:block w-1/2 relative overflow-hidden">
-        <img
-          src="/hero-nature.jpg"
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover"
-          style={{ filter: "sepia(0.5) saturate(1.1) brightness(0.85)" }}
-        />
         <div className="absolute inset-0 bg-gradient-to-r from-transparent to-background" />
         <div className="absolute bottom-12 left-10 right-16 z-10">
           <p className="font-serif text-2xl font-bold text-white/90 leading-snug hero-text-shadow">
             "I can do all things through Christ who strengthens me."
           </p>
-          <p className="text-sm text-white/60 mt-3 font-medium">— Philippians 4:13</p>
+          <p className="text-sm text-white/60 mt-3 font-medium">
+            — Philippians 4:13
+          </p>
         </div>
       </div>
 
@@ -56,21 +58,30 @@ export default function Login() {
               <Flame className="w-7 h-7 text-white" />
             </div>
             <div>
-              <h1 className="font-serif text-2xl font-bold text-foreground">Daily Bingo</h1>
-              <p className="text-sm text-muted-foreground mt-1">Sign in to continue your journey</p>
+              <h1 className="font-serif text-2xl font-bold text-foreground">
+                Daily Bingo
+              </h1>
+              <p className="text-sm text-muted-foreground mt-1">
+                Sign in to continue your journey
+              </p>
             </div>
           </div>
 
           {/* Card */}
           <div className="bg-card rounded-3xl border border-border/50 card-warm px-7 py-8">
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-5"
+              >
                 <FormField
                   control={form.control}
                   name="username"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-sm font-semibold text-foreground">Username</FormLabel>
+                      <FormLabel className="text-sm font-semibold text-foreground">
+                        Username
+                      </FormLabel>
                       <FormControl>
                         <Input
                           placeholder="Enter your username"
@@ -87,7 +98,9 @@ export default function Login() {
                   name="password"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-sm font-semibold text-foreground">Password</FormLabel>
+                      <FormLabel className="text-sm font-semibold text-foreground">
+                        Password
+                      </FormLabel>
                       <FormControl>
                         <Input
                           type="password"
