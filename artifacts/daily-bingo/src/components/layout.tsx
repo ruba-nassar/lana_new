@@ -19,16 +19,15 @@ export function AdminLayout({ children }: { children: ReactNode }) {
 
   return (
     <div className="min-h-screen bg-background flex flex-col md:flex-row">
-      {/* Sidebar */}
-      <aside className="w-full md:w-60 bg-sidebar border-r border-sidebar-border flex flex-col shrink-0 shadow-sm">
+      <aside className="w-full md:w-60 bg-sidebar border-r border-sidebar-border flex flex-col shrink-0">
         {/* Logo */}
-        <div className="px-5 py-6 flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-xl bg-primary flex items-center justify-center shadow-sm">
-            <Flame className="w-4 h-4 text-white" />
+        <div className="px-5 py-6 flex items-center gap-3">
+          <div className="w-9 h-9 rounded-xl bg-primary flex items-center justify-center shadow-sm shadow-primary/30">
+            <Flame className="w-4.5 h-4.5 text-white" />
           </div>
           <div>
-            <span className="font-bold text-sm tracking-tight text-foreground">Daily Bingo</span>
-            <p className="text-[10px] text-muted-foreground leading-none mt-0.5">Admin panel</p>
+            <p className="font-serif font-bold text-sm text-foreground leading-tight">Daily Bingo</p>
+            <p className="text-[10px] text-muted-foreground">Admin panel</p>
           </div>
         </div>
 
@@ -42,8 +41,8 @@ export function AdminLayout({ children }: { children: ReactNode }) {
                 href={item.href}
                 className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 ${
                   active
-                    ? "bg-primary text-white shadow-sm"
-                    : "text-sidebar-foreground/70 hover:text-sidebar-foreground hover:bg-sidebar-accent"
+                    ? "bg-primary text-white shadow-sm shadow-primary/25"
+                    : "text-sidebar-foreground/65 hover:text-sidebar-foreground hover:bg-sidebar-accent"
                 }`}
               >
                 <item.icon className="h-4 w-4 shrink-0" />
@@ -53,9 +52,9 @@ export function AdminLayout({ children }: { children: ReactNode }) {
           })}
         </nav>
 
-        {/* User footer */}
+        {/* Footer */}
         <div className="px-3 py-4 border-t border-sidebar-border">
-          <div className="flex items-center gap-2.5 px-2 mb-2">
+          <div className="flex items-center gap-2.5 px-2 mb-2.5">
             <div className="w-7 h-7 rounded-full bg-primary/15 flex items-center justify-center text-xs font-bold text-primary shrink-0">
               {user.name?.charAt(0).toUpperCase()}
             </div>
@@ -90,19 +89,17 @@ export function ParticipantLayout({ children }: { children: ReactNode }) {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      {/* Sticky frosted header */}
-      <header className="sticky top-0 z-20 bg-white/80 backdrop-blur-lg border-b border-border/50 shadow-sm">
+      {/* Sticky warm frosted header */}
+      <header className="sticky top-0 z-20 bg-background/85 backdrop-blur-md border-b border-border/50 shadow-sm shadow-border/30">
         <div className="max-w-xl mx-auto px-4 h-14 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="w-7 h-7 rounded-xl bg-primary flex items-center justify-center shadow-sm">
+            <div className="w-7 h-7 rounded-xl bg-primary flex items-center justify-center shadow-sm shadow-primary/30">
               <Flame className="h-3.5 w-3.5 text-white" />
             </div>
-            <span className="font-bold text-sm tracking-tight">Daily Bingo</span>
+            <span className="font-serif font-bold text-sm text-foreground">Daily Bingo</span>
           </div>
           <div className="flex items-center gap-3">
-            <span className="text-xs font-medium text-muted-foreground hidden sm:block">
-              {user.name}
-            </span>
+            <span className="text-xs font-medium text-muted-foreground hidden sm:block">{user.name}</span>
             <Button
               variant="ghost"
               size="sm"
@@ -115,10 +112,7 @@ export function ParticipantLayout({ children }: { children: ReactNode }) {
           </div>
         </div>
       </header>
-
-      <main className="flex-1 px-4 md:px-6">
-        {children}
-      </main>
+      <main className="flex-1 px-4 md:px-6">{children}</main>
     </div>
   );
 }
