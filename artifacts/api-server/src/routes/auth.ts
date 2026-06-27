@@ -6,11 +6,11 @@ import { verifyPassword } from "../lib/auth";
 
 const router = Router();
 
-router.post("/auth/login", async (req, res): Promise<void> => {
+router.post("/auth/login", async (req, res) => {
   const parsed = LoginBody.safeParse(req.body);
+
   if (!parsed.success) {
-    res.status(400).json({ error: parsed.error.message });
-    return;
+    return res.status(400).json({ error: parsed.error.message });
   }
 
   const [user] = await db
@@ -19,20 +19,19 @@ router.post("/auth/login", async (req, res): Promise<void> => {
     .where(eq(usersTable.username, parsed.data.username));
 
   if (!user) {
-    res.status(401).json({ error: "Invalid credentials" });
-    return;
+    return res.status(401).json({ error: "Invalid credentials" });
   }
 
   const valid = await verifyPassword(parsed.data.password, user.passwordHash);
+
   if (!valid) {
-    res.status(401).json({ error: "Invalid credentials" });
-    return;
+    return res.status(401).json({ error: "Invalid credentials" });
   }
 
   req.session.userId = user.id;
   req.session.userRole = user.role;
 
-  res.json(
+  return res.json(
     LoginResponse.parse({
       id: user.id,
       name: user.name,
@@ -43,16 +42,15 @@ router.post("/auth/login", async (req, res): Promise<void> => {
   );
 });
 
-router.post("/auth/logout", (req, res): void => {
+router.post("/auth/logout", (req, res) => {
   req.session.destroy(() => {
     res.json({ ok: true });
   });
 });
 
-router.get("/auth/me", async (req, res): Promise<void> => {
+router.get("/auth/me", async (req, res) => {
   if (!req.session.userId) {
-    res.status(401).json({ error: "Not authenticated" });
-    return;
+    return res.status(401).json({ error: "Not authenticated" });
   }
 
   const [user] = await db
@@ -62,11 +60,10 @@ router.get("/auth/me", async (req, res): Promise<void> => {
 
   if (!user) {
     req.session.destroy(() => {});
-    res.status(401).json({ error: "Not authenticated" });
-    return;
+    return res.status(401).json({ error: "Not authenticated" });
   }
 
-  res.json(
+  return res.json(
     GetMeResponse.parse({
       id: user.id,
       name: user.name,
