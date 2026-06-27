@@ -58,46 +58,67 @@ function PassportField({
   onChange: (v: string) => void;
   readOnly?: boolean;
 }) {
-  const taRef = useRef<HTMLTextAreaElement>(null);
+  const elRef = useRef<HTMLElement | null>(null);
 
   // Auto-grow the textarea to fit its content.
   useEffect(() => {
     if (variant !== "textarea") return;
-    const el = taRef.current;
+    const el = elRef.current;
     if (el) {
       el.style.height = "auto";
       el.style.height = `${el.scrollHeight}px`;
     }
   }, [value, variant]);
 
-  // react-pageflip captures mouse/touch/pointer events on each page to drive the
-  // flip gesture, which steals focus from the inputs and prevents typing. When
-  // the field is editable, stop those events from reaching the flipbook so the
-  // input can be focused and typed into normally. (Left enabled in read-only
-  // mode so participants can still swipe to flip pages from anywhere.)
-  const stop = readOnly
-    ? undefined
-    : (e: React.SyntheticEvent) => e.stopPropagation();
+  // react-pageflip attaches NATIVE DOM listeners on its wrapper element to drive
+  // the flip gesture. React synthetic handlers can't stop those (they fire at the
+  // React root, which is an ancestor of the wrapper, so the wrapper's native
+  // listener runs first and steals focus). To make the field editable we must
+  // attach native listeners directly on the element: they fire at the target,
+  // before the event bubbles up to the flipbook wrapper. Read-only fields skip
+  // this so participants can still swipe-to-flip from anywhere.
+  useEffect(() => {
+    if (readOnly) return;
+    const el = elRef.current;
+    if (!el) return;
+    const stop = (e: Event) => e.stopPropagation();
+    const events = [
+      "mousedown",
+      "pointerdown",
+      "touchstart",
+      "mousemove",
+      "pointermove",
+      "touchmove",
+      "mouseup",
+      "pointerup",
+      "touchend",
+      "click",
+    ];
+    events.forEach((ev) => el.addEventListener(ev, stop));
+    return () => events.forEach((ev) => el.removeEventListener(ev, stop));
+  }, [readOnly]);
 
   if (variant === "input") {
     return (
       <input
+        ref={(el) => {
+          elRef.current = el;
+        }}
         className="passport-input"
         value={value}
         onChange={(e) => onChange(e.target.value)}
         readOnly={readOnly}
         aria-label={ariaLabel}
         dir="rtl"
-        onMouseDown={stop}
-        onTouchStart={stop}
-        onPointerDown={stop}
       />
     );
   }
 
   return (
     <textarea
-      ref={taRef}
+      ref={(el) => {
+        elRef.current = el;
+      }}
       className="passport-textarea"
       value={value}
       onChange={(e) => onChange(e.target.value)}
@@ -105,9 +126,6 @@ function PassportField({
       rows={3}
       aria-label={ariaLabel}
       dir="rtl"
-      onMouseDown={stop}
-      onTouchStart={stop}
-      onPointerDown={stop}
     />
   );
 }
