@@ -190,108 +190,305 @@
     @apply font-serif;
   }
 }
-* ===========================
+/* ===========================
    PASSPORT DESIGN
 =========================== */
 
-.passport-cover {
-  width: 300px;
-  height: 420px;
+/* ── Section wrapper ─────────────────────────────────────────────── */
+.pp-section {
+  margin-top: 2.5rem;
+}
 
-  background: linear-gradient(180deg, #3f2a67 0%, #2d1d4d 100%);
+.pp-section-title {
+  font-size: 1.875rem;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
 
-  border-radius: 18px;
+.pp-center {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
 
-  border: 2px solid #c9a04b;
-
+/* ── Cover ───────────────────────────────────────────────────────── */
+.pp-cover {
   position: relative;
-
+  border-radius: 16px;
+  background: linear-gradient(160deg, #4e2d8c 0%, #2b1660 55%, #1e0f44 100%);
+  border: 3px solid #c9a040;
+  box-shadow:
+    0 24px 48px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
   overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
+.pp-cover:hover {
+  transform: translateY(-5px);
   box-shadow:
-    0 20px 40px rgba(0,0,0,.25),
-    inset 0 0 0 2px rgba(255,255,255,.05);
-
-  transition: .35s;
+    0 36px 64px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
-.passport-cover:hover{
-  transform:translateY(-4px);
-  box-shadow:
-    0 28px 60px rgba(0,0,0,.35);
+/* Leather dot texture */
+.pp-cover::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.18) 1px,
+    transparent 1px
+  );
+  background-size: 10px 10px;
+  opacity: 0.14;
+  pointer-events: none;
 }
 
-/* Leather texture */
-
-.passport-cover::before{
-
-  content:"";
-
-  position:absolute;
-
-  inset:0;
-
-  opacity:.12;
-
-  background-image:
-  radial-gradient(circle, rgba(255,255,255,.25) 1px, transparent 1px);
-
-  background-size:12px 12px;
+/* Gold inner frame */
+.pp-cover-frame {
+  position: absolute;
+  inset: 12px;
+  border: 2px solid #d4a832;
+  border-radius: 10px;
+  pointer-events: none;
+  z-index: 1;
 }
 
-/* Gold frame */
-
-.passport-cover::after{
-
-  content:"";
-
-  position:absolute;
-
-  top:14px;
-  left:14px;
-  right:14px;
-  bottom:14px;
-
-  border:2px solid #d6b15a;
-
-  border-radius:12px;
-}
-.passport-page{
-  background:#f8f4ea;
-  width:100%;
-  height:100%;
-  padding:35px;
-  box-sizing:border-box;
-  border:2px solid #d7c8a5;
-  display:flex;
-  flex-direction:column;
-  direction:rtl;
+/* Cover content */
+.pp-cover-body {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 28px 24px;
+  direction: rtl;
+  text-align: center;
 }
 
-.passport-page h1{
-  text-align:center;
-  font-size:34px;
-  margin-bottom:25px;
+.pp-cover-sub {
+  color: #e8c96a;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  font-family: var(--font-serif);
+  opacity: 0.85;
+  margin: 0;
 }
 
-.passport-page p{
-  font-size:22px;
-  margin-bottom:20px;
+.pp-cover-cross {
+  font-size: 2.8rem;
+  color: #d4a832;
+  line-height: 1;
+  text-shadow: 0 0 20px rgba(212, 168, 50, 0.5);
+  margin: 4px 0;
 }
 
-.passport-textarea{
-  width:100%;
-  min-height:180px;
-  border:none;
-  border-bottom:2px solid #c8bea3;
-  background:transparent;
-  resize:none;
-  outline:none;
-  font-size:18px;
-  line-height:2;
-  padding:8px;
+.pp-cover-title {
+  color: #f0dfa0;
+  font-size: 1.6rem;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 0.04em;
 }
 
-.passport-textarea:focus{
-  border-bottom:2px solid #9a6f2e;
+.pp-open-btn {
+  margin-top: 20px;
+  padding: 10px 28px;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #c9a040, #8a6010);
+  color: #fff8e8;
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.06em;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.pp-open-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+.pp-open-btn:active {
+  transform: translateY(0);
+}
+
+/* ── Flipbook wrapper ────────────────────────────────────────────── */
+.pp-book-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.pp-flipbook {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+.pp-flip-hint {
+  font-size: 0.78rem;
+  color: #8a7a6a;
+  letter-spacing: 0.05em;
+  direction: rtl;
+  margin: 0;
+}
+
+/* ── Passport page shell (required by react-pageflip) ────────────── */
+.pp-page {
+  width: 100%;
+  height: 100%;
+  background: #faf6ee;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* ── Page inner layout ───────────────────────────────────────────── */
+.pp-page-inner {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 20px 22px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  direction: rtl;
+  border: 1px solid #d9cdb5;
+  background: #faf6ee;
+}
+
+.pp-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1.5px solid #c8b890;
+  padding-bottom: 6px;
+  margin-bottom: 2px;
+}
+
+.pp-page-num {
+  font-size: 0.7rem;
+  color: #a08040;
+  font-family: var(--font-serif);
+  letter-spacing: 0.08em;
+}
+
+.pp-cross-small {
+  font-size: 1rem;
+  color: #b8921a;
+  opacity: 0.7;
+}
+
+/* ── Fields ──────────────────────────────────────────────────────── */
+.pp-field {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pp-field-half {
+  flex: 1;
+}
+
+.pp-field-grow {
+  flex: 1;
+  min-height: 0;
+}
+
+.pp-row {
+  display: flex;
+  gap: 12px;
+}
+
+.pp-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: #7a5c22;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-family: var(--font-serif);
+}
+
+.pp-underline-input {
+  height: 26px;
+  border-bottom: 1.5px solid #c0a870;
+}
+
+/* ── Textareas ───────────────────────────────────────────────────── */
+.pp-textarea {
+  flex: 1;
+  width: 100%;
+  min-height: 60px;
+  resize: none;
+  border: none;
+  border-bottom: 1.5px solid #c0a870;
+  background: repeating-linear-gradient(
+    #faf6ee,
+    #faf6ee 22px,
+    #ddd0a8 22px,
+    #ddd0a8 23px
+  );
+  outline: none;
+  font-size: 0.82rem;
+  font-family: var(--font-sans);
+  color: #2e1f0a;
+  line-height: 23px;
+  padding: 0 4px;
+  direction: rtl;
+  text-align: right;
+}
+
+.pp-textarea:focus {
+  border-bottom: 1.5px solid #8a6010;
+  background: repeating-linear-gradient(
+    #fffdf5,
+    #fffdf5 22px,
+    #c8a850 22px,
+    #c8a850 23px
+  );
+}
+
+/* ── Close button row ────────────────────────────────────────────── */
+.pp-close-row {
+  display: flex;
+  justify-content: center;
+  padding-top: 4px;
+}
+
+.pp-close-btn {
+  padding: 7px 20px;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #5a3090, #311860);
+  color: #f0dfa0;
+  font-family: var(--font-serif);
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid #c9a040;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.pp-close-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* ── Responsive ──────────────────────────────────────────────────── */
+@media (max-width: 400px) {
+  .pp-cover {
+    width: 90vw !important;
+    height: auto !important;
+    aspect-ratio: 320 / 450;
+  }
 }

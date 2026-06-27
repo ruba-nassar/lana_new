@@ -1,113 +1,143 @@
 import { useState, forwardRef } from "react";
 import HTMLFlipBook from "react-pageflip";
 
+const COVER_W = 320;
+const COVER_H = 450;
+
 const PassportPage = forwardRef<
   HTMLDivElement,
-  { children?: React.ReactNode; className?: string }
->(({ children, className = "" }, ref) => {
+  { children?: React.ReactNode }
+>(({ children }, ref) => (
+  <div ref={ref} className="pp-page">
+    {children}
+  </div>
+));
+PassportPage.displayName = "PassportPage";
+
+function PageContent({
+  pageNum,
+  onClose,
+}: {
+  pageNum: number;
+  onClose?: () => void;
+}) {
   return (
-    <div ref={ref} className={`passport-page ${className}`}>
-      {children}
+    <div className="pp-page-inner">
+      <div className="pp-page-header">
+        <span className="pp-page-num">{pageNum}</span>
+        <div className="pp-cross-small">✝</div>
+      </div>
+
+      <div className="pp-field">
+        <label className="pp-label">اسم التحدي</label>
+        <div className="pp-underline-input" />
+      </div>
+
+      <div className="pp-row">
+        <div className="pp-field pp-field-half">
+          <label className="pp-label">الجولة ١</label>
+          <div className="pp-underline-input" />
+        </div>
+        <div className="pp-field pp-field-half">
+          <label className="pp-label">الجولة ٢</label>
+          <div className="pp-underline-input" />
+        </div>
+      </div>
+
+      <div className="pp-field pp-field-grow">
+        <label className="pp-label">تأمل</label>
+        <textarea className="pp-textarea" placeholder="اكتب هنا…" />
+      </div>
+
+      <div className="pp-field pp-field-grow">
+        <label className="pp-label">اقتلاع</label>
+        <textarea className="pp-textarea" placeholder="اكتب هنا…" />
+      </div>
+
+      {onClose && (
+        <div className="pp-close-row">
+          <button onClick={onClose} className="pp-close-btn">
+            إغلاق الجواز
+          </button>
+        </div>
+      )}
     </div>
   );
-});
-PassportPage.displayName = "PassportPage";
+}
 
 export default function Passport() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <section className="mt-10">
-      <h2 className="text-3xl font-serif font-bold mb-6">📖 Passport</h2>
-      <div className="flex justify-center">
+    <section className="pp-section">
+      <h2 className="pp-section-title">📖 جواز العبور</h2>
+
+      <div className="pp-center">
         {!isOpen ? (
-          <div className="passport-cover">
-            <div className="passport-inner">
-              <h2>جواز العبور</h2>
-
-              <p>الدخول إلى جبل صهيون</p>
-
-              <div className="passport-cross">✝</div>
-
+          <div
+            className="pp-cover"
+            style={{ width: COVER_W, height: COVER_H }}
+          >
+            <div className="pp-cover-frame" />
+            <div className="pp-cover-body">
+              <p className="pp-cover-sub">مملكة الله</p>
+              <div className="pp-cover-cross">✝</div>
+              <h2 className="pp-cover-title">جواز العبور</h2>
+              <p className="pp-cover-sub">الدخول إلى جبل صهيون</p>
               <button
+                className="pp-open-btn"
                 onClick={() => setIsOpen(true)}
-                className="mt-8 rounded-xl bg-amber-700 text-white px-6 py-3"
               >
-                Open Passport
+                افتح الجواز
               </button>
             </div>
           </div>
         ) : (
-          <HTMLFlipBook
-            width={400}
-            height={550}
-            size="stretch"
-            minWidth={315}
-            maxWidth={600}
-            minHeight={420}
-            maxHeight={800}
-            maxShadowOpacity={0.5}
-            showCover={true}
-            mobileScrollSupport={true}
-            className="passport-book"
-            style={{}}
-            startPage={0}
-            drawShadow={true}
-            flippingTime={700}
-            usePortrait={true}
-            startZIndex={0}
-            autoSize={true}
-            clickEventForward={true}
-            useMouseEvents={true}
-            swipeDistance={30}
-            showPageCorners={true}
-            disableFlipByClick={false}
-          >
-            {/* الصفحة الأولى */}
-            <PassportPage>
-              <h1>اسم المهمة</h1>
+          <div className="pp-book-wrapper">
+            <HTMLFlipBook
+              width={COVER_W}
+              height={COVER_H}
+              size="fixed"
+              minWidth={COVER_W}
+              maxWidth={COVER_W}
+              minHeight={COVER_H}
+              maxHeight={COVER_H}
+              maxShadowOpacity={0.4}
+              showCover={false}
+              mobileScrollSupport={true}
+              className="pp-flipbook"
+              style={{}}
+              startPage={0}
+              drawShadow={true}
+              flippingTime={650}
+              usePortrait={true}
+              startZIndex={0}
+              autoSize={false}
+              clickEventForward={true}
+              useMouseEvents={true}
+              swipeDistance={30}
+              showPageCorners={true}
+              disableFlipByClick={false}
+            >
+              <PassportPage>
+                <PageContent pageNum={1} />
+              </PassportPage>
 
-              <p>الجولة 1 ____________ الجولة 2 ____________</p>
+              <PassportPage>
+                <PageContent pageNum={2} />
+              </PassportPage>
 
-              <textarea className="passport-textarea" placeholder="..." />
+              <PassportPage>
+                <PageContent pageNum={3} />
+              </PassportPage>
 
-              <div className="mt-6">
-                <h3 className="text-xl font-bold mb-2 text-center">الاقتلاع</h3>
+              <PassportPage>
+                <PageContent pageNum={4} onClose={() => setIsOpen(false)} />
+              </PassportPage>
+            </HTMLFlipBook>
 
-                <textarea
-                  className="passport-textarea"
-                  placeholder="..."
-                  rows={5}
-                />
-              </div>
-            </PassportPage>
-
-            {/* الصفحة الثانية */}
-            <PassportPage>
-              <h1>اسم المهمة</h1>
-
-              <p>الجولة 1 ____________ الجولة 2 ____________</p>
-
-              <textarea className="passport-textarea" placeholder="..." />
-
-              <div className="mt-6">
-                <h3 className="text-xl font-bold mb-2 text-center">الاقتلاع</h3>
-
-                <textarea
-                  className="passport-textarea"
-                  placeholder="..."
-                  rows={5}
-                />
-              </div>
-
-              <button
-                onClick={() => setIsOpen(false)}
-                className="mt-6 rounded-xl bg-amber-700 text-white px-6 py-3"
-              >
-                Close Passport
-              </button>
-            </PassportPage>
-          </HTMLFlipBook>
+            <p className="pp-flip-hint">← اسحب الصفحة للتقليب →</p>
+          </div>
         )}
       </div>
     </section>
